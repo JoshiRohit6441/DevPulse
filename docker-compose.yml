@@ -1,0 +1,14 @@
+
+services:
+  redis:
+    image: redis:latest
+    container_name: redis_devpulse
+    ports:
+      - "${REDIS_PORT}:6379"
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    volumes:
+      - ./redis/data:/data
+
+volumes:
+  redis_data:
