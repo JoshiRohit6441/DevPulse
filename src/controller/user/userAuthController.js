@@ -6,6 +6,7 @@ import {
   hashPassword,
 } from "../../../utils/auth-helper.js";
 import { setCookie } from "../../../utils/cookie-helper.js";
+import { sendVerificationCodeMail } from "../../../utils/email-helper.js";
 import handleResponse from "../../../utils/http-response.js";
 import {
   clearRedisData,
@@ -55,6 +56,8 @@ export const registerUser = async (req, resp) => {
       JSON.stringify(data),
       2, //15 minutes
     );
+
+    await sendVerificationCodeMail(user.email, verificationOTP);
 
     return handleResponse(
       200,
@@ -165,6 +168,8 @@ export const loginUser = async (req, resp) => {
           JSON.stringify(data),
           2, //15 minutes
         );
+
+        await sendVerificationCodeMail(user.email, verificationOTP);
       }, 1000);
 
       return handleResponse(
@@ -233,6 +238,8 @@ export const forgotPassword = async (req, resp) => {
       JSON.stringify(data),
       2, //15 minutes
     );
+
+    await sendVerificationCodeMail(user.email, verificationOTP);
 
     return handleResponse(
       200,

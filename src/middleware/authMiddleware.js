@@ -1,6 +1,6 @@
-import { verifyAuthToken } from "../../../utils/auth-helper.js";
-import handleResponse from "../../../utils/http-response.js";
-import User from "../../model/UserSchema.js";
+import { verifyAuthToken } from "../../utils/auth-helper.js";
+import handleResponse from "../../utils/http-response.js";
+import User from "../model/UserSchema.js";
 
 const authMiddleware = async (req, resp, next) => {
   try {

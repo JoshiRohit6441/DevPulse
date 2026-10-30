@@ -17,9 +17,9 @@ import {
   verifyOTPValidation,
 } from "../validations/AuthValidation.js";
 import { profileImageUpload } from "../../utils/file-upload.js";
-import authMiddleware from "../controller/middleware/authMiddleware.js";
-import passwordResetMiddleware from "../controller/middleware/passwordResetMiddleware.js";
 import { updateProfile } from "../../utils/user-helper.js";
+import authMiddleware from "../middleware/authMiddleware.js";
+import passwordResetMiddleware from "../middleware/passwordResetMiddleware.js";
 
 const router = express.Router();
 
