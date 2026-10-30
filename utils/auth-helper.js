@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
+import { v4 as uuidv4 } from "uuid";
 import {
   ACCESS_TOKEN_EXPIRATION,
   ACCESS_TOKEN_SECRET,
@@ -67,16 +68,6 @@ export const comparePassword = async (password, hashedPassword) => {
   return await bcrypt.compare(password, hashedPassword);
 };
 
-// set cookie
-export const setCookie = async (label, value, expiry, resp) => {
-  return resp.cookie(label, value, {
-    httpOnly: true,
-    secure: NODE_ENV === "production",
-    maxAge: expiry,
-    sameSite: "lax",
-  });
-};
-
-export const clearCookie = async (label, resp) => {
-  return resp.clearCookie(label);
+export const generateVerificationToken = (id) => {
+  return `${id}-${uuidv4()}`;
 };
